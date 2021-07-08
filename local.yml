@@ -1,0 +1,20 @@
+---
+- hosts: localhost
+  connection: local
+  become: true
+
+  tasks:
+  - name: install packages
+    package:
+      name:
+        - htop
+        - tmux
+
+  - name: copy file
+    copy:
+      src: files/test.txt
+      dest: /home/bo/Dokumente/testnachansible.txt
+      owner: bo
+      group: bo
+
+...
