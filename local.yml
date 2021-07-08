@@ -1,8 +1,14 @@
 ---
 - hosts: localhost
+  gather_facts: False
   connection: local
-  become: true
+  become: True
 
+  
+  vars: 
+    ansible_python_interpreter: /usr/bin/python3
+    ansible_user: bo
+    
   tasks:
   - name: install packages
     package:
