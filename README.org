@@ -1,1 +1,47 @@
-* Ansible-Pull Deploy
+* Ansible-Pull Test
+Dies ist ein Test für "ansible-pull"
+
+Wichtig, die Dateien in /etc/ansible/ansible.cfg und
+/etc/ansible/hosts müssen angepasst werden.
+
+hosts:
+#+begin_src ini 
+  [defaults]
+  localhost
+#+end_src
+
+in ansible.cfg befinden sich der Verweis auf:
+private_key_file = ssh_private_key
+vault_password_file = schluesseldatei_fuer_vaultdateien
+
+
+
+Hier werden nur zwei Pakete installiert und eine Testdatei mit dem Namen:
+test.txt nach ~/Dokumente/testnachansible.txt kopiert.
+
+Die test.txt Datei befindet sich im /files/ Ordner des Git-Repos
+
+
+* Code
+#+begin_src yaml 
+  --- hosts: localhost gather_facts: False connection: local become:
+  - True
+
+  
+    tasks:
+    - name: install packages
+      package:
+	name:
+	- htop
+	- tmux
+
+    - name: copy file
+      copy:
+	src: files/test.txt
+	dest: /home/bo/Dokumente/testnachansible.txt
+	owner: bo
+	group: bo  
+  ...
+  #+end_src
+
+

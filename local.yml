@@ -5,10 +5,6 @@
   become: True
 
   
-#  vars: 
-#    ansible_python_interpreter: /usr/bin/python3
-#    ansible_user: bo
-    
   tasks:
   - name: install packages
     package:
@@ -22,5 +18,4 @@
       dest: /home/bo/Dokumente/testnachansible.txt
       owner: bo
       group: bo
-
 ...
